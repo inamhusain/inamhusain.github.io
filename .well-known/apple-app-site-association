@@ -1,18 +1,27 @@
 {
-  "applinks": {
-    "details": [
-      {
-      "appIDs": ["7X8V5X448H.com.webelight.deeplinking.app"],
-      "components": [
-    {
-      "/": "/refer",
-      "?": "code",
-      "#": "*",
-      "comment": "Matches any URL whose path starts with /buy/ and fragment equals my_great_product_123, ignoring case"
-    }
-  ],
-  "defaults": { "caseSensitive": false }
-      }
-    ]
-  }
+   "applinks":{
+      "details":[
+         {
+            "appIDs":[
+               "7X8V5X448H.com.webelight.deeplinking.app"
+            ],
+            "components":[
+               {
+                  "/":"/refer",
+                  "?":"code",
+                  "#":"*",
+                  "comment":"Matches any URL whose path starts with /buy/ and fragment equals my_great_product_123, ignoring case"
+               },
+               {
+                  "/":"*",
+                  "exclude":true,
+                  "comment":"Exclude all other paths from opening in the app"
+               }
+            ],
+            "defaults":{
+               "caseSensitive":false
+            }
+         }
+      ]
+   }
 }
