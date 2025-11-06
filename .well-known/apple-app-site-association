@@ -2,11 +2,17 @@
   "applinks": {
     "details": [
       {
-        "appID": "7X8V5X448H.com.webelight.deeplinking.app",
-        "paths": [
-          "/refer",
-          "/refer/*",
-          "NOT /"
+        "appIDs": ["7X8V5X448H.com.webelight.deeplinking.app"],
+        "components": [
+          {
+            "/": "/refer",
+            "comment": "Exact match for /refer path — open in app"
+          },
+          {
+            "/": "/*",
+            "exclude": true,
+            "comment": "Exclude all other paths from opening in the app"
+          }
         ]
       }
     ]
