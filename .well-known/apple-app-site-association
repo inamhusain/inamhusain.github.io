@@ -1,15 +1,18 @@
 {
-   "applinks":{
-      "apps":[
-         
-      ],
-      "details":[
-         {
-            "appID":"7X8V5X448H.com.webelight.deeplinking.app",
-            "paths":[
-               "/refer"
-            ]
-         }
-      ]
-   }
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "7X8V5X448H.com.webelight.deeplinking.app",
+        "paths": [ "*" ],
+      "components":[
+          {
+            "/":"/refer",
+            "comment":"Matches URL with a path /refer"
+          },
+           
+        ]
+      }
+    ]
+  }
 }
