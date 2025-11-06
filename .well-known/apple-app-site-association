@@ -4,9 +4,7 @@
       {
         "appIDs": ["7X8V5X448H.com.webelight.deeplinking.app"],
         "paths": [
-          "/refer",
-          "NOT *.html"
-        ]
+          "/refer",        ]
       }
     ]
   }
