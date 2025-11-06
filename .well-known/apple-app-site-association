@@ -7,11 +7,6 @@
           {
             "/": "/refer",
             "comment": "Exact match for /refer path — open in app"
-          },
-          {
-            "/": "/*",
-            "exclude": true,
-            "comment": "Exclude all other paths from opening in the app"
           }
         ]
       }
