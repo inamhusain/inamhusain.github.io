@@ -6,6 +6,7 @@
         "components": [
           {
             "/": "/refer",
+            "?": {"code":"????"}
             "comment": "Exact match for /refer path — open in app"
           }
         ]
