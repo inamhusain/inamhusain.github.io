@@ -3,12 +3,9 @@
     "details": [
       {
         "appIDs": ["7X8V5X448H.com.webelight.deeplinking.app"],
-        "components": [
-          {
-            "/": "/refer",
-            "?": {"code":"????"},
-            "comment": "Exact match for /refer path — open in app"
-          }
+        "paths": [
+          "/refer",
+          "NOT *.html"
         ]
       }
     ]
