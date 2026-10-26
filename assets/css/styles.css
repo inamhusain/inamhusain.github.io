@@ -1,0 +1,293 @@
+/* ---------- Tokens ---------- */
+:root {
+  --bg: #f2eee5;
+  --ink: #151515;
+  --mute: #6b675f;
+  --line: #d9d3c6;
+  --card: #e8e2d5;
+  --accent: #ff5a1f;
+  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+  --font-body: Inter, system-ui, sans-serif;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121212;
+    --ink: #f2eee5;
+    --mute: #9a958b;
+    --line: #2c2a27;
+    --card: #1c1b19;
+  }
+}
+
+/* ---------- Base ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-padding-top: 80px; overflow-x: clip; }
+/* Native smooth scroll only as a no-JS fallback; it breaks ScrollTrigger's measurements when Lenis runs. */
+html:not(.js) { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 17px/1.6 var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+ul { list-style: none; }
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: .95;
+  letter-spacing: -.02em;
+}
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+section { padding: 110px 0; border-top: 1px solid var(--line); }
+.muted { color: var(--mute); }
+.mt-16 { margin-top: 16px; }
+
+.skip-link { position: absolute; left: 16px; top: -100px; z-index: 100; padding: 10px 16px; background: var(--accent); color: #fff; }
+.skip-link:focus { top: 16px; }
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 28px;
+  font: 400 13px/1.6 var(--font-body);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+.label::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+
+.btn {
+  display: inline-block;
+  padding: 14px 26px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--bg);
+  text-decoration: none;
+  font-weight: 500;
+  transition: transform .2s, background .2s, color .2s;
+}
+.btn--ghost { padding: 9px 18px; font-size: 15px; background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+.btn:hover { background: var(--accent); color: #fff; transform: translateY(-2px); }
+
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 20px; }
+.tags li { font-size: 12px; border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; }
+
+/* ---------- Nav ---------- */
+.nav { position: sticky; top: 0; z-index: 10; background: var(--bg); border-bottom: 1px solid var(--line); }
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 70px; }
+.logo { font-family: var(--font-display); font-weight: 800; font-size: 22px; text-decoration: none; }
+.logo span { color: var(--accent); }
+.nav ul { display: flex; gap: 28px; }
+.nav ul a { text-decoration: none; font-size: 15px; }
+.nav ul a:hover { color: var(--accent); }
+@media (max-width: 700px) { .nav ul { display: none; } }
+
+/* ---------- Hero ---------- */
+.hero { padding: 90px 0 70px; border: 0; }
+.hero h1 { font-size: clamp(56px, 12vw, 180px); text-transform: uppercase; }
+.hero h1 em, .contact h2 em { font-style: normal; color: var(--accent); }
+.hero__foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 32px; margin-top: 48px; }
+.hero__foot p { max-width: 520px; font-size: 20px; }
+.hero__hint { font-size: 14px; color: var(--mute); text-decoration: none; }
+
+/* ---------- Ticker ---------- */
+.ticker { overflow: hidden; white-space: nowrap; padding: 22px 0; background: var(--ink); color: var(--bg); }
+.ticker__track {
+  display: inline-block;
+  animation: ticker 30s linear infinite;
+  font: 800 clamp(24px, 3.5vw, 44px) var(--font-display);
+  text-transform: uppercase;
+}
+.ticker b { margin: 0 26px; color: var(--accent); }
+@keyframes ticker { to { transform: translateX(-50%); } }
+
+/* ---------- About ---------- */
+.about { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: 24px; }
+.about__head { grid-column: 1 / -1; }
+.about h2 { font-size: clamp(56px, 10vw, 150px); text-transform: uppercase; }
+.about h2 em { font-style: normal; color: var(--accent); }
+.about__copy { grid-column: 5 / -1; margin-top: 56px; }
+.about__lead { font-size: clamp(22px, 2.4vw, 34px); line-height: 1.35; letter-spacing: -.01em; }
+.about__copy p:not(.about__lead) { margin-top: 24px; max-width: 560px; color: var(--mute); }
+
+.stats { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 96px; }
+.stats div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 300px;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: var(--card);
+  transition: background .3s, color .3s;
+}
+.stats dt { font-size: 15px; color: var(--mute); transition: color .3s; }
+.stats dd { font: 800 clamp(64px, 7vw, 112px)/.9 var(--font-display); letter-spacing: -.03em; }
+.stats div:first-child, .stats div:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+.stats div:first-child dt, .stats div:hover dt { color: #ffffffd0; }
+
+@media (max-width: 860px) {
+  .about__copy { grid-column: 1 / -1; margin-top: 32px; }
+  .stats { grid-template-columns: 1fr 1fr; margin-top: 56px; }
+  .stats div { min-height: 190px; padding: 22px; }
+}
+
+/* ---------- Work ---------- */
+.work-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 48px; }
+.work-head h2 { font-size: clamp(44px, 7vw, 100px); text-transform: uppercase; }
+.work-head p { max-width: 380px; color: var(--mute); }
+
+.projects { border-top: 1px solid var(--line); }
+.project {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 70px 1fr 1.1fr;
+  gap: 24px;
+  padding: 36px 20px;
+  border-bottom: 1px solid var(--line);
+  transition: color .3s;
+}
+/* Colour wipe on hover; each project sets --c inline. */
+.project::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--c, var(--accent));
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform .5s cubic-bezier(.7, 0, .2, 1);
+}
+.project__num { padding-top: 10px; font-size: 14px; color: var(--mute); transition: color .3s; }
+.project h3 { font-size: clamp(30px, 4vw, 54px); transition: transform .4s; }
+.project p { font-size: 15px; color: var(--mute); transition: color .3s; }
+.project:hover { color: #fff; }
+.project:hover::before { transform: scaleY(1); }
+.project:hover h3 { transform: translateX(14px); }
+.project:hover p, .project:hover .project__num { color: #ffffffd0; }
+.project:hover .tags li { border-color: #ffffff70; }
+@media (max-width: 760px) {
+  .project { grid-template-columns: 40px 1fr; gap: 12px 16px; }
+  .project__body { grid-column: 2; }
+}
+
+.tooling-label { margin-top: 80px; }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr)); gap: 24px; }
+.card { display: flex; flex-direction: column; padding: 28px; border-radius: 20px; background: var(--card); transition: transform .3s; }
+.card:hover { transform: translateY(-6px); }
+.card h3 { margin-bottom: 10px; font-size: 30px; }
+.card p { flex: 1; font-size: 15px; color: var(--mute); }
+
+/* ---------- Expertise: a line that draws itself through each skill ---------- */
+.expertise-title { margin-bottom: 40px; font-size: clamp(44px, 7vw, 100px); text-transform: uppercase; }
+.journey { position: relative; padding: 60px 0 40px; }
+.journey__line { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.journey__line path { fill: none; stroke-width: 10; stroke-linecap: round; }
+.journey__ghost { stroke: var(--line); }
+.journey__draw { stroke: var(--accent); stroke-dasharray: 1000; stroke-dashoffset: 0; }
+
+.stops { list-style: none; position: relative; z-index: 1; display: grid; gap: clamp(90px, 11vw, 160px); }
+.stop { width: fit-content; max-width: calc(100% - var(--x)); margin-left: var(--x); }
+.stop h3 { display: flex; flex-wrap: wrap; align-items: center; gap: clamp(10px, 1.4vw, 20px); font-size: clamp(34px, 6vw, 92px); line-height: 1; text-transform: uppercase; }
+.stop__icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: clamp(58px, 7vw, 100px);
+  aspect-ratio: 1;
+  border-radius: 24px;
+  background: var(--accent);
+  box-shadow: 0 16px 30px -12px color-mix(in srgb, var(--accent) 70%, transparent);
+  rotate: -8deg;
+}
+.stop:nth-child(even) .stop__icon { rotate: 8deg; }
+.stop__icon svg { width: 52%; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.stop__note {
+  max-width: 380px;
+  margin: 18px 0 0 clamp(30px, 8vw, 160px);
+  padding: 14px 24px;
+  border: 1.5px solid var(--accent);
+  border-radius: 28px;
+  background: var(--bg);
+  font-size: 15px;
+  rotate: -3deg;
+}
+.stop:nth-child(even) .stop__note { rotate: 2deg; }
+@media (max-width: 760px) {
+  .stop { margin-left: calc(var(--x) * .35); }
+  .stop__note { margin-left: 16px; }
+}
+
+/* ---------- Toolbox ---------- */
+.stack { display: flex; flex-wrap: wrap; gap: 10px; }
+.stack li { padding: 10px 18px; border: 1px solid var(--ink); border-radius: 999px; font-weight: 500; }
+
+/* ---------- Writing ---------- */
+.stories { border-top: 1px solid var(--line); }
+.story {
+  display: grid;
+  grid-template-columns: 110px 1fr auto 40px;
+  align-items: center;
+  gap: 24px;
+  padding: 32px 8px;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  transition: padding .3s;
+}
+.story time, .story__pub { font-size: 14px; color: var(--mute); }
+.story h3 { font-size: clamp(22px, 2.6vw, 36px); line-height: 1.1; transition: color .3s; }
+.story__arrow { font-size: 28px; transition: transform .3s; }
+.story:hover { padding-left: 20px; }
+.story:hover h3, .story:hover .story__arrow { color: var(--accent); }
+.story:hover .story__arrow { transform: rotate(45deg); }
+.stories__all { margin-top: 40px; }
+@media (max-width: 760px) {
+  .story { grid-template-columns: 1fr 32px; gap: 8px 16px; }
+  .story h3 { grid-column: 1; grid-row: 2; }
+  .story__pub { display: none; }
+  .story__arrow { grid-column: 2; grid-row: 1 / 3; }
+}
+
+/* ---------- Contact & footer ---------- */
+.contact { border: 0; text-align: center; background: var(--ink); color: var(--bg); }
+.contact h2 { font-size: clamp(52px, 11vw, 170px); text-transform: uppercase; }
+.contact p { max-width: 520px; margin: 28px auto 36px; opacity: .7; }
+.contact .btn { background: var(--accent); color: #fff; overflow-wrap: anywhere; }
+.contact .btn:hover { background: var(--bg); color: var(--ink); }
+.socials { display: flex; flex-wrap: wrap; justify-content: center; gap: 28px; margin-top: 40px; }
+
+.footer { padding: 28px 0; font-size: 14px; background: var(--ink); color: var(--bg); border-top: 1px solid color-mix(in srgb, var(--bg) 15%, transparent); }
+.footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; opacity: .65; }
+
+/* ---------- Motion ---------- */
+/* Lenis smooth scroll */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+.progress { position: fixed; inset: 0 0 auto; z-index: 50; height: 3px; background: var(--accent); transform: scaleX(0); transform-origin: left; }
+
+.hero .wrap { position: relative; }
+.badge { position: absolute; top: 0; right: 24px; width: clamp(110px, 14vw, 190px); }
+.badge text { font: 800 15px var(--font-display); letter-spacing: .08em; fill: var(--ink); }
+.badge circle { fill: var(--accent); }
+.badge__arrow { fill: none; stroke: #fff; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+
+
+/* While JS runs, hide what GSAP will animate in, so it doesn't flash first. Without JS, the .js class is removed and everything shows. */
+.js .hero h1 { visibility: hidden; }
+.js .ticker__track { animation: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
