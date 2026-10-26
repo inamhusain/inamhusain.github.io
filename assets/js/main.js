@@ -32,7 +32,8 @@ const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 if (reduceMotion || !window.gsap || !window.Lenis) {
   document.documentElement.classList.remove('js');
 } else {
-  initMotion();
+  // SplitText measures lines in whatever font is loaded; splitting before Inter swaps in leaves over-long lines that re-wrap on iOS.
+  document.fonts.ready.then(initMotion);
 }
 
 function initMotion() {
