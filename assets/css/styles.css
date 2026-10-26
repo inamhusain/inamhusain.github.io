@@ -224,6 +224,7 @@ section { padding: 110px 0; border-top: 1px solid var(--line); }
 .stop:nth-child(even) .stop__note { rotate: 2deg; }
 @media (max-width: 760px) {
   .stop { margin-left: calc(var(--x) * .35); }
+  .stop h3 { font-size: min(34px, 8vw); } /* "ARCHITECTURE" can't wrap; keep it inside 320px screens */
   .stop__note { margin-left: 16px; }
 }
 
